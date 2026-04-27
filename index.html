@@ -7,102 +7,26 @@
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="icon" href="favicon.ico">
     <style>
-        :root {
-            --mint: #69b53f;
-            --kde-blue: #3daee9;
-            --xfce-mouse: #2284e6;
-            --bg: #f8f9fa;
-        }
-
-        body {
-            font-family: 'Ubuntu', sans-serif;
-            background-color: var(--bg);
-            color: #333;
-            margin: 0;
-        }
-
-        header {
-            background: white;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid var(--mint);
-        }
-
-        .logo { font-size: 32px; font-weight: bold; letter-spacing: -1px; }
+        :root { --mint: #69b53f; --kde-blue: #3daee9; --xfce-mouse: #2284e6; --bg: #f8f9fa; }
+        body { font-family: 'Ubuntu', sans-serif; background-color: var(--bg); color: #333; margin: 0; }
+        header { background: white; padding: 20px; text-align: center; border-bottom: 3px solid var(--mint); }
+        .logo { font-size: 32px; font-weight: bold; letter-spacing: -1px; margin-bottom: 10px; }
         .logo span { color: var(--mint); }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            padding: 40px 20px;
-        }
-
-        .edition-card {
-            background: white;
-            border-radius: 12px;
-            width: 420px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #ddd;
-            transition: border-color 0.3s ease;
-        }
-
-        .edition-card:hover {
-            border-color: var(--mint);
-        }
-
-        .icon-logo {
-            height: 60px;
-            width: auto;
-            margin-bottom: 15px;
-        }
-
-        .screenshot {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-        }
-
+        .version-selector { margin: 10px 0; padding: 5px 15px; border-radius: 5px; border: 2px solid var(--mint); font-weight: bold; cursor: pointer; }
+        .container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 40px 20px; }
+        .version-content { display: none; width: 100%; justify-content: center; flex-wrap: wrap; gap: 40px; }
+        .version-content.active { display: flex; }
+        .edition-card { background: white; border-radius: 12px; width: 420px; padding: 30px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #ddd; }
+        .icon-logo { height: 60px; margin-bottom: 15px; }
+        .screenshot { width: 100%; border-radius: 6px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .edition-card h2 { font-size: 24px; margin: 10px 0; }
-        
         .kde h2 { color: var(--kde-blue); }
         .xfce h2 { color: var(--xfce-mouse); }
-
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-
-        .btn {
-            padding: 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
+        .btn { padding: 14px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: 0.2s; }
         .btn-torrent { background: var(--mint); color: white; }
-        .btn-torrent:hover { background: #589a34; }
-
         .btn-mirror { background: #f0f0f0; color: #555; }
-        .btn-mirror:hover { background: #e5e5e5; }
-
-        .md5 {
-            margin-top: 25px;
-            font-size: 10px;
-            font-family: monospace;
-            background: #f4f4f4;
-            padding: 8px;
-            border-radius: 4px;
-            color: #777;
-            word-break: break-all;
-        }
-
+        .md5 { margin-top: 25px; font-size: 10px; font-family: monospace; background: #f4f4f4; padding: 8px; border-radius: 4px; color: #777; word-break: break-all; }
         footer { text-align: center; padding: 60px; color: #999; font-size: 0.85em; }
     </style>
 </head>
@@ -110,14 +34,43 @@
 
 <header>
     <div class="logo">wine<span>mint</span></div>
+    <select class="version-selector" onchange="changeVersion(this.value)">
+        <option value="v02">Version 0.2 (Latest)</option>
+        <option value="v01">Version 0.1</option>
+    </select>
 </header>
 
 <div class="container">
-    
-    <!-- KDE Edition -->
-    <div class="edition-card kde">
+    <!-- Версия 0.2 (АКТУАЛЬНАЯ) -->
+    <div id="v02" class="version-content active">
+        <div class="edition-card kde">
+            <img src="kde.svg" alt="KDE" class="icon-logo">
+            <h2>KDE Plasma Edition 0.2</h2>
+            <a href="winemintkde.png"><img src="winemintkde.png" alt="Winemint KDE 0.2" class="screenshot"></a>
+            <div class="btn-group">
+                <a href="winemint-0.2-kde-64bit.iso.torrent" class="btn btn-torrent">Download .torrent</a>
+                <a href="https://sourceforge.net/projects/winemint/files/winemint-0.2-kde-64bit.iso/download" class="btn btn-mirror">Download .iso</a>
+            </div>
+            <div class="md5">MD5: 5ea9eaedde78ce39b9a6059a46f99e99</div>
+        </div>
+
+        <div class="edition-card xfce">
+            <img src="xfce.svg" alt="XFCE" class="icon-logo">
+            <h2>XFCE Edition 0.2</h2>
+            <a href="winemintxfce.png"><img src="winemintxfce.png" alt="Winemint XFCE 0.2" class="screenshot"></a>
+            <div class="btn-group">
+                <a href="winemint-0.2-64bit.iso.torrent" class="btn btn-torrent">Download .torrent</a>
+                <a href="https://sourceforge.net/projects/winemint/files/winemint-0.2-64bit.iso/download" class="btn btn-mirror">Download .iso</a>
+            </div>
+            <div class="md5">MD5: 5ed9e8aa3fb7e698bd4ff9b6e90d6589</div>
+        </div>
+    </div>
+
+    <!--0.1 -->
+    <div id="v01" class="version-content">
+        <div class="edition-card kde">
         <img src="kde.svg" alt="KDE Logo" class="icon-logo">
-        <h2>KDE Plasma Edition</h2>
+        <h2>KDE Plasma Edition 0.1</h2>
 
         <a href="winemintkde.png"><img src="winemintkde.png" alt="Winemint KDE Desktop" class="screenshot"></a>
         
@@ -130,7 +83,7 @@
 
     <div class="edition-card xfce">
         <img src="xfce.svg" alt="XFCE Logo" class="icon-logo">
-        <h2>XFCE Edition</h2>
+        <h2>XFCE Edition 0.1</h2>
         <a href="winemintxfce.png"><img src="winemintxfce.png" alt="Winemint XFCE Desktop" class="screenshot"></a>
         
         <div class="btn-group">
@@ -139,9 +92,16 @@
         </div>
         <div class="md5">MD5: fa2aeb26a3cccd7b477365368f4489b8</div>
     </div>
-
+    </div>
 </div>
 
+<footer>Created in Thierachern</footer>
 
+<script>
+function changeVersion(v) {
+    document.querySelectorAll('.version-content').forEach(el => el.classList.remove('active'));
+    document.getElementById(v).classList.add('active');
+}
+</script>
 </body>
 </html>
