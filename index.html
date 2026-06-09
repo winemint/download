@@ -37,7 +37,8 @@
     <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 10px;">
     <a href="https://winemint.github.io/report" style="text-decoration: none;"><button class="btn btn-torrent" style="padding: 5px 15px; margin: 0; font-size: 14px;border:none;">Report</button></a>
     <select class="version-selector" onchange="changeVersion(this.value)">
-        <option value="v02">Version 0.2 (Latest)</option>
+        <option value="v05">Version 0.5 (Latest)</option>
+        <option value="v02">Version 0.2</option>
         <option value="v01">Version 0.1</option>
     </select>
     <a href="https://winemint.github.io/wiki" style="text-decoration: none;"><button class="btn btn-torrent" style="padding: 5px 15px; margin: 0; font-size: 14px;border:none;">Wiki</button></a>
@@ -45,6 +46,31 @@
 </header>
 
 <div class="container">
+    <!--0.5-->
+    <div id="v05" class="version-content active">
+        <div class="edition-card kde">
+            <img src="kde.svg" alt="KDE" class="icon-logo">
+            <h2>KDE Plasma Edition 0.5</h2>
+            <a href="winemint0.5kde.png"><img src="winemint0.5kde.png" alt="Winemint KDE 0.5" class="screenshot"></a>
+            <div class="btn-group">
+                <a href="winemint-0.5-kde-64bit.iso.torrent" class="btn btn-torrent">Download .torrent</a>
+                <a href="https://sourceforge.net/projects/winemint/files/winemint-0.5-kde-64bit.iso/download" class="btn btn-mirror">Download .iso</a>
+            </div>
+            <div class="md5">MD5: f9e6522b58f21b17de59b473d0065db1</div>
+        </div>
+
+        <div class="edition-card xfce">
+            <img src="xfce.svg" alt="XFCE" class="icon-logo">
+            <h2>XFCE Edition 0.5</h2>
+            <a href="winemint0.5xfce.png"><img src="winemint0.5xfce.png" alt="Winemint XFCE 0.5" class="screenshot"></a>
+            <div class="btn-group">
+                <a href="winemint-0.5-64bit.iso.torrent" class="btn btn-torrent">Download .torrent</a>
+                <a href="https://sourceforge.net/projects/winemint/files/winemint-0.5-64bit.iso/download" class="btn btn-mirror">Download .iso</a>
+            </div>
+            <div class="md5">MD5: f31556f07587eeb5bbf61ee3ea4409aa</div>
+        </div>
+    </div>
+    
     <!--0.2-->
     <div id="v02" class="version-content active">
         <div class="edition-card kde">
